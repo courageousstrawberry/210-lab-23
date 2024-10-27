@@ -17,6 +17,8 @@ int main_menu();
 int main() {
     srand(time(0));
     bool again;
+    int user = 0;
+    list<Goat> goats;
 
     // read & populate arrays for names and colors
     ifstream fin("names.txt");
@@ -30,20 +32,32 @@ int main() {
     while (fin1 >> colors[i++]);
     fin1.close();
 
+    user = main_menu();
+    while (user!=4) {
+        if (user == 1) {
+            add_goat(goats, names, colors);
+        }
+        else if (user == 2) {
+            delete_goat(goats);
+        }
+        else if (user == 3) {
 
-
+        }
+    }
 
     return 0;
 }
 
 int main_menu() {
     int choice = 0;
+    // Print out all possible menu options.
     cout << "*** GOAT MANAGER 3001 ***" << endl;
     cout << "[1] Add a goat" << endl;
     cout << "[2] Delete a goat" << endl;
     cout << "[3] List goats" << endl;
     cout << "[4] Quit" << endl;
     cout << "Choice --> ";
+    // Loop until user enters valid input.
     while(!(cin >> choice) || (choice != 1 && choice !=2 && choice !=3 && choice !=4)) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -53,20 +67,27 @@ int main_menu() {
 }
 
 void add_goat(list<Goat> &trip, string names[], string colors[]) {
+    // Randomly select name, color, and age of the goat.
     string name = names[rand() % SZ_NAMES];
     string color = colors[rand() % SZ_COLORS];
     int age = rand() % (MAX_AGE +1);
 
+    // Create a new goat and add it to the list.
     Goat new_goat(name, age, color);
     trip.push_back(new_goat);
 }
 
-int select_goat(list<Goat> trip) {
-    int choice = 0;
+void display_trip(list<Goat> trip){
+    // Loop through all the goats in the list and display them.
     for (auto i = trip.begin(); i != trip.end(); i++){
         cout << "[" << i << "] " << i->get_name() << " (" << i->get_age() << ", " << i->get_color() << ")" << endl;
     }
+}
+
+int select_goat(list<Goat> trip) {
+    int choice = 0;
     cout << "Select Goat -> ";
+    // Loop until user selects a valid goat.
     while (!(cin >> choice) || choice > trip.size() || choice < 0) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -78,8 +99,12 @@ int select_goat(list<Goat> trip) {
 void delete_goat(list<Goat> &trip) {
     int choice = 0;
     cout << "Select a goat to delete..." << endl;
+    // User selects a goat to delete.
     choice = select_goat(trip);
+    // Create an iterator.
     auto it = trip.begin();
+    // Iterate through the list until the user's choice is reached.
     advance(it, choice);
+    // Remove that goat from the list.
     trip.erase(it);
 }
