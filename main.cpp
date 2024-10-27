@@ -85,9 +85,11 @@ void add_goat(list<Goat> &trip, string names[], string colors[]) {
 }
 
 void display_trip(list<Goat> trip){
+    int count = 1;
     // Loop through all the goats in the list and display them.
     for (auto i = trip.begin(); i != trip.end(); i++){
-        cout << "[" << i << "] " << i->get_name() << " (" << i->get_age() << ", " << i->get_color() << ")" << endl;
+        cout << "[" << count << "] " << i->get_name() << " (" << i->get_age() << ", " << i->get_color() << ")" << endl;
+        count++;
     }
 }
 
@@ -96,7 +98,7 @@ int select_goat(list<Goat> trip) {
     display_trip(trip);
     cout << "Select Goat -> ";
     // Loop until user selects a valid goat.
-    while (!(cin >> choice) || choice > trip.size() || choice < 0) {
+    while (!(cin >> choice) || choice > trip.size() || choice <= 0) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "\nError invalid input, please enter an integer that corresponds to an existing goat: ";
