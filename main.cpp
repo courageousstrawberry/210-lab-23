@@ -63,7 +63,8 @@ void add_goat(list<Goat> &trip, string names[], string colors[]) {
 
 int select_goat(list<Goat> trip) {
     for (auto i = trip.begin(); i != trip.end(); i++){
-        
+        cout << "[" << i << "] " << i->get_name() << " (" << i->get_age() << ", " << i->get_color() << ")" << endl;
+
     }
 }
 
