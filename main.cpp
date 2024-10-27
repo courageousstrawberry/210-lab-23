@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iomanip>
 #include <list>
+#include <limits>
 #include "Goat.h"
 using namespace std;
 
@@ -44,6 +45,8 @@ int main_menu() {
     cout << "[4] Quit" << endl;
     cout << "Choice --> ";
     while(!(cin >> choice) || (choice != 1 && choice !=2 && choice !=3 && choice !=4)) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "Invalid choice, please enter an integer from 1 to 4: ";
     }
     return choice;
