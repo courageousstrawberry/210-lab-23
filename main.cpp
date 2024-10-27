@@ -41,8 +41,15 @@ int main() {
             delete_goat(goats);
         }
         else if (user == 3) {
-
+            display_trip(goats);
         }
+        else {
+            cout << "Error, enter a valid number 1-4." << endl;
+        }
+        user = main_menu();
+    }
+    if (user == 4) {
+        cout << "Exiting program..." << endl;
     }
 
     return 0;
@@ -86,6 +93,7 @@ void display_trip(list<Goat> trip){
 
 int select_goat(list<Goat> trip) {
     int choice = 0;
+    display_trip(trip);
     cout << "Select Goat -> ";
     // Loop until user selects a valid goat.
     while (!(cin >> choice) || choice > trip.size() || choice < 0) {
