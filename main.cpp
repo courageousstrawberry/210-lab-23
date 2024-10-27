@@ -62,12 +62,22 @@ void add_goat(list<Goat> &trip, string names[], string colors[]) {
 }
 
 int select_goat(list<Goat> trip) {
+    int choice = 0;
     for (auto i = trip.begin(); i != trip.end(); i++){
         cout << "[" << i << "] " << i->get_name() << " (" << i->get_age() << ", " << i->get_color() << ")" << endl;
-
     }
+    cout << "Select Goat -> ";
+    while (!(cin >> choice) || choice > trip.size() || choice < 0) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "\nError invalid input, please enter an integer that corresponds to an existing goat: ";
+    }
+    return choice;
 }
 
 void delete_goat(list<Goat> &trip) {
-
+    int choice = 0;
+    cout << "Select a goat to delete..." << endl;
+    choice = select_goat(trip);
+    trip.erase()
 }
