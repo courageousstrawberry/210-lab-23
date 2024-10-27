@@ -32,6 +32,7 @@ int main() {
     while (fin1 >> colors[i++]);
     fin1.close();
 
+    // Get user choice and run associated function.
     user = main_menu();
     while (user!=4) {
         if (user == 1) {
@@ -48,6 +49,7 @@ int main() {
         }
         user = main_menu();
     }
+    // Exit if choice is 4.
     if (user == 4) {
         cout << "Exiting program..." << endl;
     }
@@ -58,7 +60,7 @@ int main() {
 int main_menu() {
     int choice = 0;
     // Print out all possible menu options.
-    cout << "*** GOAT MANAGER 3001 ***" << endl;
+    cout << "\n*** GOAT MANAGER 3001 ***" << endl;
     cout << "[1] Add a goat" << endl;
     cout << "[2] Delete a goat" << endl;
     cout << "[3] List goats" << endl;
@@ -88,7 +90,7 @@ void display_trip(list<Goat> trip){
     int count = 1;
     // Loop through all the goats in the list and display them.
     for (auto i = trip.begin(); i != trip.end(); i++){
-        cout << "[" << count << "] " << i->get_name() << " (" << i->get_age() << ", " << i->get_color() << ")" << endl;
+        cout << "\t[" << count << "] " << i->get_name() << " (" << i->get_age() << ", " << i->get_color() << ")" << endl;
         count++;
     }
 }
@@ -114,7 +116,7 @@ void delete_goat(list<Goat> &trip) {
     // Create an iterator.
     auto it = trip.begin();
     // Iterate through the list until the user's choice is reached.
-    advance(it, choice);
+    advance(it, choice-1);
     // Remove that goat from the list.
     trip.erase(it);
 }
