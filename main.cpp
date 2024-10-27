@@ -79,5 +79,7 @@ void delete_goat(list<Goat> &trip) {
     int choice = 0;
     cout << "Select a goat to delete..." << endl;
     choice = select_goat(trip);
-    trip.erase()
+    auto it = trip.begin();
+    advance(it, choice);
+    trip.erase(it);
 }
