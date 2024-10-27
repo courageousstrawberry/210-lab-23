@@ -58,5 +58,15 @@ void add_goat(list<Goat> &trip, string names[], string colors[]) {
     int age = rand() % (MAX_AGE +1);
 
     Goat new_goat(name, age, color);
+    trip.push_back(new_goat);
 }
 
+int select_goat(list<Goat> trip) {
+    for (auto i = trip.begin(); i != trip.end(); i++){
+        
+    }
+}
+
+void delete_goat(list<Goat> &trip) {
+
+}
